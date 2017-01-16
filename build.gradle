@@ -39,6 +39,10 @@ configurations {
     compile.exclude module: 'spring-boot-starter-tomcat'
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+}
+
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-jetty'
