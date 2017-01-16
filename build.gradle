@@ -35,8 +35,13 @@ springBoot {
     mainClass = 'org.mycircle.application.MyCircleApplicationKt'
 }
 
+configurations {
+    compile.exclude module: 'spring-boot-starter-tomcat'
+}
+
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-starter-security'
     compile group: 'com.auth0', name: 'auth0-spring-security-api', version: '0.3.3'
