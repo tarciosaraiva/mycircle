@@ -35,7 +35,9 @@ class AppConfig : Auth0SecurityConfig() {
     @Throws(Exception::class)
     override fun authorizeRequests(http: HttpSecurity) {
         http.authorizeRequests()
-                .anyRequest().authenticated()
+                .antMatchers("/ping").permitAll()
+                .anyRequest()
+                .authenticated()
     }
 
     /*
