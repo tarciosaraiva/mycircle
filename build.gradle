@@ -1,0 +1,46 @@
+buildscript {
+    ext {
+        kotlinVersion = '1.0.6'
+        springBootVersion = '1.4.3.RELEASE'
+    }
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+    }
+}
+
+apply plugin: 'application'
+apply plugin: 'idea'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'mycircle'
+    version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+springBoot {
+    mainClass = 'org.mycircle.application.MyCircleApplicationKt'
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile group: 'com.auth0', name: 'auth0-spring-security-api', version: '0.3.3'
+    compile group: 'com.auth0', name: 'auth0', version: '0.4.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
