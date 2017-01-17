@@ -12,7 +12,10 @@ COPY build.gradle /tmp/mycircle/build.gradle
 COPY src /tmp/mycircle/src
 
 # build
-RUN gradle clean build -Pversion=${VERSION}
+RUN gradle clean
+RUN gradle testClasses
+RUN gradle test
+RUN gradle build -Pversion=${VERSION}
 
 RUN mv build/libs/mycircle-${VERSION}.jar /opt/mycircle/current/mycircle.jar
 
@@ -21,4 +24,4 @@ WORKDIR /opt/mycircle/current
 
 EXPOSE 3001
 
-CMD ["java", "-jar", "mycircle.jar"]
+CMD ["java", "-jar", "/opt/mycircle/current/mycircle.jar"]
