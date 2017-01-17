@@ -41,14 +41,14 @@ deploy_cluster() {
 make_task_def(){
     task_template='[
         {
-            "name": "go-sample-webapp",
-            "image": "%s.dkr.ecr.ap-southeast-2.amazonaws.com/go-sample-webapp:%s",
+            "name": "mycircle",
+            "image": "%s.dkr.ecr.ap-southeast-2.amazonaws.com/mycircle:%s",
             "essential": true,
-            "memory": 200,
-            "cpu": 10,
+            "memory": 512,
+            "cpu": 5,
             "portMappings": [
                 {
-                    "containerPort": 8080,
+                    "containerPort": 3001,
                     "hostPort": 80
                 }
             ]
