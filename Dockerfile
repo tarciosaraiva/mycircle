@@ -12,9 +12,6 @@ COPY build.gradle /tmp/mycircle/build.gradle
 COPY src /tmp/mycircle/src
 
 # build
-RUN gradle clean
-RUN gradle testClasses
-RUN gradle test
 RUN gradle build -Pversion=${VERSION}
 
 RUN mv build/libs/mycircle-${VERSION}.jar /opt/mycircle/current/mycircle.jar

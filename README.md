@@ -1,6 +1,8 @@
 # My Circle
 A simple, secure and personal social network. No ads. No bloat.
 
+[![CircleCI](https://circleci.com/gh/tarciosaraiva/mycircle.svg?style=svg)](https://circleci.com/gh/tarciosaraiva/mycircle)
+
 ## Stack
 - Java 8
 - Gradle 3 (optional)
