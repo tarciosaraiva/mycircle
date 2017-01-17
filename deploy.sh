@@ -11,11 +11,11 @@ configure_aws_cli(){
 
 deploy_cluster() {
 
-    family="sample-webapp-task-family"
+    family="mycircle-task-family"
 
     make_task_def
     register_definition
-    if [[ $(aws ecs update-service --cluster sample-webapp-cluster --service sample-webapp-service --task-definition $revision | \
+    if [[ $(aws ecs update-service --cluster mycircle-cluster --service sample-webapp-service --task-definition $revision | \
                    $JQ '.service.taskDefinition') != $revision ]]; then
         echo "Error updating service."
         return 1
@@ -24,7 +24,7 @@ deploy_cluster() {
     # wait for older revisions to disappear
     # not really necessary, but nice for demos
     for attempt in {1..30}; do
-        if stale=$(aws ecs describe-services --cluster sample-webapp-cluster --services sample-webapp-service | \
+        if stale=$(aws ecs describe-services --cluster mycircle-cluster --services sample-webapp-service | \
                        $JQ ".services[0].deployments | .[] | select(.taskDefinition != \"$revision\") | .taskDefinition"); then
             echo "Waiting for stale deployments:"
             echo "$stale"
@@ -44,8 +44,8 @@ make_task_def(){
             "name": "mycircle",
             "image": "%s.dkr.ecr.ap-southeast-2.amazonaws.com/mycircle:%s",
             "essential": true,
-            "memory": 512,
-            "cpu": 5,
+            "memory": 1024,
+            "cpu": 1,
             "portMappings": [
                 {
                     "containerPort": 3001,
@@ -76,4 +76,4 @@ register_definition() {
 
 configure_aws_cli
 push_ecr_image
-#deploy_cluster
+deploy_cluster
