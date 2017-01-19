@@ -11,7 +11,7 @@ configure_aws_cli(){
 
 push_ecr_image(){
     eval $(aws ecr get-login --region ap-southeast-2)
-    docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-southeast-2.amazonaws.com/mycircle-repository:$CIRCLE_SHA1
+    docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-southeast-2.amazonaws.com/mycircle:$CIRCLE_SHA1
 }
 
 configure_aws_cli
