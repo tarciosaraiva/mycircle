@@ -1,23 +1,13 @@
-FROM frekele/gradle:3-jdk8
+FROM openjdk:8
 MAINTAINER tarcio@gmail.com
 
 ARG VERSION=0.0.1-SNAPSHOT
 
 RUN mkdir -p /opt/mycircle/current
-RUN mkdir -p /tmp/mycircle
-WORKDIR /tmp/mycircle
+WORKDIR /opt/mycircle/current
 
 # Copy needed files
-COPY build.gradle /tmp/mycircle/build.gradle
-COPY src /tmp/mycircle/src
-
-# build
-RUN gradle build -Pversion=${VERSION}
-
-RUN mv build/libs/mycircle-${VERSION}.jar /opt/mycircle/current/mycircle.jar
-
-RUN rm -rf /tmp/mycircle
-WORKDIR /opt/mycircle/current
+COPY build/libs/mycircle-${VERSION}.jar /opt/mycircle/current/mycircle.jar
 
 EXPOSE 3001
 
