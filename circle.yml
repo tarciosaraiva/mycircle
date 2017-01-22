@@ -10,7 +10,7 @@ machine:
 
 test:
   override:
-    - gradle build -Pversion=$BUILD_VERSION
+    - ./gradlew build -Pversion=$BUILD_VERSION
   post:
     - docker build --build-arg VERSION=$BUILD_VERSION --rm=false -t $AWS_ACCOUNT_ID.dkr.ecr.ap-southeast-2.amazonaws.com/mycircle:$BUILD_VERSION .
     - docker run --name mycircle -d -p 3001:3001 $AWS_ACCOUNT_ID.dkr.ecr.ap-southeast-2.amazonaws.com/mycircle:$BUILD_VERSION
