@@ -44,12 +44,19 @@ task wrapper(type: Wrapper) {
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-jetty'
-    compile 'org.springframework.boot:spring-boot-starter-actuator'
-    compile 'org.springframework.boot:spring-boot-starter-security'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jetty'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
     compile group: 'com.auth0', name: 'auth0-spring-security-api', version: '0.3.3'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.40'
+    compile group: 'postgresql', name: 'postgresql', version: '9.4.1208-jdbc42-atlassian-hosted'
     compile group: 'com.auth0', name: 'auth0', version: '0.4.0'
-    compile "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}"
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    compile group: 'org.flywaydb', name: 'flyway-core', version: '4.0.3'
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib', version: "${kotlinVersion}"
+
+    runtime group: 'org.hsqldb', name: 'hsqldb'
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
 }
