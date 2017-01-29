@@ -14,6 +14,7 @@ open class FlywayInitialiser constructor(@Qualifier("usersDataSource") val users
         val flyway = Flyway()
         flyway.sqlMigrationPrefix = "U"
         flyway.dataSource = usersDataSource
+        println("Migrating users table")
         flyway.migrate()
     }
 
